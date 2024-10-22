@@ -1,0 +1,188 @@
+%!TEX TS-program = lualatex
+\documentclass[11pt,a4paper]{article}
+\usepackage[english]{babel} 
+%LTeX: language=en-US
+\usepackage[no-math]{fontspec}
+%\usepackage{stmaryrd}
+\usepackage{cite}
+%\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+% margin
+\setlength{\topmargin}{0.4cm}
+\setlength{\headheight}{0.4cm}
+\setlength{\headsep}{0.8cm}
+\setlength{\footskip}{1cm}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{24cm}
+\setlength{\voffset}{-1.5cm}
+\setlength{\hoffset}{-0.5cm}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\evensidemargin}{0cm}
+\usepackage{lipsum} 
+\usepackage[]{mdframed}
+\usepackage{physics} 
+\usepackage{siunitx} % units
+\DeclareSIUnit{\octet}{o}
+\usepackage{svg}
+\svgsetup{
+    inkscape=pdf
+}
+\RequirePackage{lastpage}
+\usepackage{appendix}
+\usepackage{cite}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{graphicx}			
+\usepackage{amsmath}				
+\usepackage{amssymb}			
+\usepackage{amsfonts}
+\usepackage{slashed}
+\usepackage{subcaption}
+\usepackage{fourier-orns}          		
+\usepackage[T1]{fontenc}
+\usepackage{tabularx}				
+\usepackage{stmaryrd} 
+\usepackage{psfrag}	
+\usepackage[strict]{changepage}
+\usepackage{amsthm}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{remark}{Remark}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\makeatletter
+\DeclareSizeFunction{sub}{\sub@sfcnt\@font@info}
+\makeatother
+\usepackage{color}
+\usepackage{cancel}			
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage[labelfont=bf,format=plain,justification=raggedright]{caption}
+\definecolor{linkcolor}{rgb}{0,0,0.6}		
+\usepackage[colorlinks=true,	
+			pdfstartview=FitV,
+			linkcolor= linkcolor,
+			citecolor= linkcolor,
+			urlcolor= linkcolor,
+			hyperindex=true,
+			hyperfigures=false,
+			linktocpage=true,
+			pdfproducer=medialab,
+			pdfa=true
+			]
+			{hyperref}				
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,bending,positioning}
+\usepackage[compat=1.1.0]{tikz-feynman}	
+\usepackage[most]{tcolorbox}
+\definecolor{ShadowColor}{RGB}{30,150,190}
+\makeatletter
+\newcommand\Cshadowbox{\VerbBox\@Cshadowbox}
+\def\@Cshadowbox#1{%
+  \setbox\@fancybox\hbox{\fbox{#1}}%
+  \leavevmode\vbox{%
+    \offinterlineskip
+    \dimen@=\shadowsize
+    \advance\dimen@ .5\fboxrule
+    \hbox{\copy\@fancybox\kern.5\fboxrule\lower\shadowsize\hbox{%
+      \color{ShadowColor}\vrule \@height\ht\@fancybox \@depth\dp\@fancybox \@width\dimen@}}%
+    \vskip\dimexpr-\dimen@+0.5\fboxrule\relax
+    \moveright\shadowsize\vbox{%
+      \color{ShadowColor}\hrule \@width\wd\@fancybox \@height\dimen@}}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{babel}%
+        {\newcommand{\nospace}[1]{{\NoAutoSpaceBeforeFDP{}#1}}}
+        {\newcommand{\nospace}[1]{#1}}
+\makeatother
+\newcommand{\drawat}[3]{\makebox[0pt][l]{\raisebox{#2}{\hspace*{#1}#3}}}
+
+\AtBeginDocument{\RenewCommandCopy{\qty}{\SI}}
+\setlength{\headheight}{28.3 pt}
+\numberwithin{equation}{section}
+\newcommand{\pd}[1]{\partial_{#1}}
+\newcommand{\pu}[1]{\partial^{#1}}
+%%%%%%%%%%%%%% Color Macro
+\usepackage{xcolor}
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+\title{Quantum Theory, Groups and Representations}
+\begin{document}
+\maketitle
+\begin{definition}
+    A representation $\left(\pi,V\right)$ of a group $G$ over a vector space $V$ is an application $\pi:G\rightarrow GL(V)$ such that $\forall g_1,g_2 \in G, \ \pi\left(g_1\cdot g_2\right) = \pi\left(g_1\right) \pi(g_2)$.
+    \begin{itemize}
+        \item A representation $(\pi,V)$ is said \textit{irreducible} if there is no proper subset $W \subset  V$ such that $\pi_W:G\rightarrow GL(W)$ is a representation.
+        \item Otherwise, $(\pi,V)$ is said \textit{reducible}.
+    \end{itemize}
+\end{definition}
+\begin{definition}
+    A unitary representation $(\pi,V)$, where $V$ is a $\mathbb{K}$-EV equiped with an inner product $\expval{\ ,\ }:V\cross V \rightarrow \mathbb{K}$, is a representation which preserves the inner product such that:
+    \begin{equation*}
+        \forall g \in G,\ \forall v,w \in V,\ \expval{v,w} = \expval{\pi(g)v, \pi(g)w}. 
+    \end{equation*}
+    If $V$ is finite dimensionnal (of dimension $n$), we can treat the representation as an element of $\mathcal{M}_{n \cross n}\left(\mathbb{K}\right)$, and for a unitary transformation, $\forall g\in G, \pi(g) \in U(n)$.
+\end{definition}
+\begin{definition}
+    (Direct sum representation). Given representations $\pi_1$ and $\pi_2$ of dimensions $n_1$ and $n_2$, there is a representation of dimension $n_1+n_2$ called the direct sum of the two representations, denoted $\pi_1 \oplus \pi_2$. This representation is given by the homomorphism:
+    \begin{equation*}
+        \left(\pi_1 \oplus \pi_2\right):g \in G \mapsto \begin{pmatrix}
+            \pi_1(g)& \vb{0}\\
+            \vb{0}& \pi_2(g)
+        \end{pmatrix}.
+    \end{equation*}
+\end{definition}
+\begin{theorem}
+    A unitary transformation $\pi$ over a finite dimensionnal vector space $V$ can be written as $\oplus \pi_i $, where $\left\{\pi_i\right\}$ is a set of irreducible representations.
+\end{theorem}
+\begin{proof}
+    If $(\pi,V)$ is irreducible, then it's obvious.\\
+    Otherwise, there exists $W \subset V$ such that $(\pi_W,W)$ is a representation.  \\
+    Since $V = W  \oplus W^\perp$, we want to check if $(\pi_{W^\perp},W^\perp)$ is a representation.
+    \begin{itemize}
+        \item Let $w \in W$ and $v \in W^\perp$, then obviously $v \perp w \Leftrightarrow \expval{v,w} = \expval{\pi(g)v,\pi(g)w}= 0$. Since $(\pi_W,W)$ is a representation, $\pi(g)w \in W$ and thus $\forall g \in G,\ \pi(g)v \perp W $. \\
+        This means that $\forall g \in G,\ \forall v \in W^\perp,\ \pi(g)v \in W^\perp$. Thus, $\pi_{W^\perp},W^\perp$ is a representation.(It respects the group product since $(\pi,V)$ is a representation.)
+    \end{itemize}
+    Thus:\begin{equation*}
+        (\pi,V) = (\pi_W,W)\oplus(\pi_{W^\perp},W^\perp).
+    \end{equation*}
+    We can then repeat this process until each subrepresentation is irreducible.
+\end{proof}
+\begin{theorem}{Schur's Lemna:}
+    If a \textbf{complex} representation $(\pi,V)$ is irreducible, then the only application $M:V\rightarrow V$ commuting with all the $\pi(g)$ is $M = \lambda \mathbb{I},\ \lambda \in \mathbb{C}$. 
+\end{theorem}
+\begin{proof}
+    Let's assume that $(\pi,V)$ is an irreducible representation and that $\forall g \in G, \left[M,\pi(g)\right] = 0$. Since $V$ is a $\mathbb{C}$-vector space, the equation:
+    \begin{equation*}
+        \det(M-\lambda \mathbb{I}) = 0
+    \end{equation*}
+    has $n$ roots (counting the multiplicity) and thus we can find all the eigenspaces:
+    \begin{equation*}
+        U_\lambda = \left\{v\in V | Mv = \lambda v\right\} = \ker\left(M-\lambda \mathbb{I}\right) \neq  \emptyset .
+    \end{equation*}
+    Since $\pi$ and $M$ commute, $v\in\ker\left(M-\lambda \mathbb{I}\right) \implies  \forall g \in G\ \pi(g)v \in \ker\left(M-\lambda \mathbb{I}\right) $.
+    As a consequence, $(\pi,\ker\left(M-\lambda \mathbb{I}\right))$ is a representation of $G$ since $\ker\left(M-\lambda \mathbb{I}\right)$ is stable under the action of $\pi$.
+    Since we supposed that $(\pi,V)$ is irreducible then either:
+    \begin{itemize}
+        \item $U_\lambda = \ker\left(M-\lambda \mathbb{I}\right) = \emptyset$, but it's not possible since $U_\lambda$ is an eignespace.
+        \item $U_\lambda = \ker\left(M-\lambda \mathbb{I}\right) = V \Leftrightarrow \forall v \in V, (M-\lambda \mathbb{I})v=0$, which implies that $M = \lambda \mathbb{I}$.
+    \end{itemize}
+\end{proof}
+\begin{theorem}
+    If $G$ is an abelian group, then all of its irreducible representations are one dimensionnal.
+\end{theorem}
+\begin{proof}
+    Consider an abelian (=commutative) group $G$ and $g \in G$.
+    Any representation $(\pi,V)$ of $G$ will satisfy:
+    \begin{equation*}
+       \forall h \in G,\  \pi(g) \pi(h) = \pi(h) \pi(g).
+    \end{equation*}
+and if $\pi$ is irreducible, by using Schur's Lemna, $\pi(h) = \lambda \mathbb{I} \simeq \lambda$ for $\lambda \in \mathbb{C}$.
+\end{proof}
+\end{document}
