@@ -290,5 +290,51 @@ This is a series of positive real numbers, whose terms (except for the first) ar
 \end{equation*}
 by the submultiplicative property. The latter series is the series for the real exponential function \( e^{|A|} \); hence the original series is convergent.
 \end{proof}
-
+Notice that while the grouo $G$ determines the Lie algebra $\mathfrak{g}$, the Lie algebra does not determine the group. For example $O(n)$ and $SO(n)$ admit the same tangent space at identity and thus the same Lie algebra, but elements in $O(n)$ not in the component of the identity (ie with determinant $-1$) cannot be written in the form $e^{tX}$ since then you could make a path of matrixes connecting such element to the identity by shrinking $t$ to zero.
+Note also that for a given $X$, different values of $t$ could give the same group element.
+\begin{definition}[Adjoint representation]
+    The adjoint representation (Ad, $\mathfrak{g}$) is given by the homomorphism
+    \begin{equation*}
+        Ad:g\in G \rightarrow Ad(g)\in GL(\mathfrak{g})
+    \end{equation*}
+    where $Ad(g)$ acts on $X\in \mathfrak{g}$ by
+    \begin{equation*}
+        (Ad(g))(X) = gXg^{-1}
+    \end{equation*}
+    To show that this is well defined, one needs to check that $gXg^{-1} \in mathfrak{g}$ when $X \in mathfrak{g}$ but it is guarenteed by the identity
+    \begin{equation*}
+        e^{tgXg^{-1}} = ge^{tX}g^{-1}
+    \end{equation*}
+    obtained directly from the serie representation of the exponential.
+    The homomorphic property of $Ad$ is also easy to show.
+\end{definition}
+A Lie algebra is not just a \textit{real} vector space, it comes with an additional structure:
+\begin{definition}[Lie Bracket]
+    The Lie bracket operation on $ \mathfrak{g}$ is the bilinear antisymetric map given by the commutator of matrices
+    \begin{equation*}
+        \left[\cdot,\cdot\right]:(X,Y)\in \mathfrak{g} \times \mathfrak{g} \rightarrow \left[X,Y\right] = XY -YX \in \mathfrak{g}
+    \end{equation*}
+\end{definition}
+We now have to check that it is well defined, ie that $\left[X,Y\right]\in \mathfrak{g}$.
+\begin{theorem}
+    If $X,Y \in  \mathfrak{g}, \left[X,Y\right] = XY - YX \in \mathfrak{g}$.
+\end{theorem}
+\begin{proof}
+    Since $X \in \mathfrak{g}$, we have $e^{tX} \in G$ and we can act on $Y \in \mathfrak{g}$ with the adjoint representation
+    \begin{equation*}
+        Ad(e^{tX})Y = e^{tX}Ye^{-tX} \in \mathfrak{g}
+    \end{equation*}
+As $t$ varies, this gives us a parametrized curve in $\mathfrak{g}$, whose derivative is also in $\mathfrak{g}$:
+\begin{equation*}
+    \dv{t} (e^{tX}Ye^{-tX}) \in \mathfrak{g}.
+\end{equation*}
+Computing the derivative with the product rule gives:
+\begin{equation*}
+    \dv{t} (e^{tX}Ye^{-tX}) = X e^{tX}Ye^{-tX} - e^{tX}Ye^{-tX}X
+\end{equation*}
+and evaluating it a $t=0$, we end up with:
+\begin{equation*}
+    \dv{t} (e^{tX}Ye^{-tX})|_{t=0} = XY - YX \in \mathfrak{g}.
+\end{equation*}
+\end{proof}
 \end{document}
