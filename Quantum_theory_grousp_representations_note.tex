@@ -44,7 +44,7 @@
 \usepackage{psfrag}	
 \usepackage[strict]{changepage}
 \usepackage{amsthm}
-\newtheorem*{theorem}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem*{remark}{Remark}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -115,10 +115,12 @@
 \title{Quantum Theory, Groups and Representations}
 \begin{document}
 \maketitle
+\section{Representation theory}
 \begin{definition}
     A representation $\left(\pi,V\right)$ of a group $G$ over a vector space $V$ is an application $\pi:G\rightarrow GL(V)$ such that $\forall g_1,g_2 \in G, \ \pi\left(g_1\cdot g_2\right) = \pi\left(g_1\right) \pi(g_2)$.
     \begin{itemize}
-        \item A representation $(\pi,V)$ is said \textit{irreducible} if there is no proper subset $W \subset  V$ such that $\pi_W:G\rightarrow GL(W)$ is a representation.
+        \item A representation $(\pi,V)$ is said \textit{irreducible} if there is no proper subset $W \subset  V$ such that $\pi_W:G\rightarrow GL(W)$ is a representation.\\
+         Another way to express that is that the only invariant\footnote{A subspace $V'\subseteq V $ is called invariant if $\pi(g)V' \subseteq V'$ for all $g \in G$.} subvector spaces of the representation are $\{0\}$ and $V$.
         \item Otherwise, $(\pi,V)$ is said \textit{reducible}.
     \end{itemize}
 \end{definition}
@@ -127,7 +129,7 @@
     \begin{equation*}
         \forall g \in G,\ \forall v,w \in V,\ \expval{v,w} = \expval{\pi(g)v, \pi(g)w}. 
     \end{equation*}
-    If $V$ is finite dimensionnal (of dimension $n$), we can treat the representation as an element of $\mathcal{M}_{n \cross n}\left(\mathbb{K}\right)$, and for a unitary transformation, $\forall g\in G, \pi(g) \in U(n)$.
+    If $V$ is finite dimensionnal (of dimension $n$), we can treat the representation as an element of $\mathcal{M}_{n \cross n}\left(\mathbb{K}\right)$, and for a unitary transformation, $\pi : G \rightarrow U(n)$.
 \end{definition}
 \begin{definition}
     (Direct sum representation). Given representations $\pi_1$ and $\pi_2$ of dimensions $n_1$ and $n_2$, there is a representation of dimension $n_1+n_2$ called the direct sum of the two representations, denoted $\pi_1 \oplus \pi_2$. This representation is given by the homomorphism:
@@ -185,4 +187,108 @@
     \end{equation*}
 and if $\pi$ is irreducible, by using Schur's Lemna, $\pi(h) = \lambda \mathbb{I} \simeq \lambda$ for $\lambda \in \mathbb{C}$.
 \end{proof}
+\section{Lie Algebra}
+The main idea is that a representation $\pi$ is homomorphic and this proporty allows to charachterize $\pi$ only in term of its derivative $\pi'$. $\pi'$ is a linear map from the tangent space to $G$ at the identity to the tangent space of $U(n)$ at the identity. The tangent space to $G$ at the identity will carry some extra structure coming from the group law and this \textit{vector space} with this structure will be called the Lie algebra of $G$, while $\pi'$ will be an example of a Lie algebra representation.
+\begin{definition}[Lie Group] 
+    A Lie group $G$ is a differentiable manifold equiped with a group law. 
+\end{definition}
+\begin{definition}[Lie Algebra]
+    The Lie Algebra of a Lie group $G$ is the tangent space of $G$ at the identity.
+\end{definition}
+\begin{definition}[Lie Algebra of a matrix group $G$]
+    For $G$ a Lie group of $n\times n$ invertible matrices, the Lie algebra of $G$ (written $Lie(G)$ or $\mathfrak{g}$) is the space $X$ of $n\times n$ matrices such that $e^{tX}\in G$ for $t \in \mathbb{R}$.
+\end{definition}
+We have defined the exponential of the matrices throug its power serie
+\begin{equation}
+    e^A = \mathbf{1} + A + \frac{1}{2} A^2 + \cdots + \frac{1}{n!}A^n + \cdots
+\end{equation}
+which can be shown to converge for any matrix $A$.
+\begin{proof}
+    We define the \textit{matrix absolute value} of \( A = (a_{ij}) \) to be
+
+\begin{equation*}
+|A| = \sqrt{\sum_{i,j} |a_{ij}|^2}.
+\end{equation*}
+
+For an \( n \times n \) real matrix \( A \) the absolute value \( |A| \) is the distance from the origin \( O \) in \( \mathbb{R}^{n^2} \) of the point
+
+\begin{equation*}
+(a_{11}, a_{12}, \dots, a_{1n}, a_{21}, a_{22}, \dots, a_{2n}, \dots, a_{n1}, \dots, a_{nn}).
+\end{equation*}
+
+If \( A \) has complex entries, and if we interpret each copy of \( \mathbb{C} \) as \( \mathbb{R}^2 \), then \( |A| \) is the distance from \( O \) of the corresponding point in \( \mathbb{R}^{2n^2} \). Similarly, if \( A \) has quaternion entries, then \( |A| \) is the distance from \( O \) of the corresponding point in \( \mathbb{R}^{4n^2} \).
+
+In all cases, \( |A - B| \) is the distance between the matrices \( A \) and \( B \), and we say that a sequence \( A_1, A_2, A_3, \dots \) of \( n \times n \) matrices has \textit{limit} \( A \) if, for each \( \varepsilon > 0 \), there is an integer \( M \) such that
+
+\begin{equation*}
+m > M \implies |A_m - A| < \varepsilon.
+\end{equation*}
+
+The key property of the matrix absolute value is the following inequality, a consequence of the triangle inequality (which holds in the plane and hence in any \( \mathbb{R}^k \)) and the Cauchy–Schwarz inequality.
+
+\textbf{Submultiplicative property.} \textit{For any two real \( n \times n \) matrices \( A \) and \( B \),}
+\begin{equation*}
+|AB| \leq |A||B|.
+\end{equation*}
+
+\textbf{Proof.} If \( A = (a_{ij}) \) and \( B = (b_{ij}) \), then it follows from the definition of matrix product that
+
+\begin{equation*}
+|(i,j)\text{-entry of } AB| = |a_{i1} b_{1j} + a_{i2} b_{2j} + \dots + a_{in} b_{nj}|
+\end{equation*}
+\begin{equation*}
+\leq |a_{i1} b_{1j}| + |a_{i2} b_{2j}| + \dots + |a_{in} b_{nj}|
+\end{equation*}
+by the triangle inequality
+
+\begin{equation*}
+= |a_{i1}||b_{1j}| + |a_{i2}||b_{2j}| + \dots + |a_{in}||b_{nj}|
+\end{equation*}
+by the multiplicative property of absolute value
+
+\begin{equation*}
+\leq \sqrt{|a_{i1}|^2 + \dots + |a_{in}|^2} \sqrt{|b_{1j}|^2 + \dots + |b_{nj}|^2}
+\end{equation*}
+by the Cauchy–Schwarz inequality.
+
+Now, summing the squares of both sides, we get
+
+\begin{equation*}
+|AB|^2 = \sum_{i,j} |(i,j)\text{-entry of } AB|^2
+\end{equation*}
+
+\begin{equation*}
+\leq \sum_{i,j} (|a_{i1}|^2 + \dots + |a_{in}|^2)(|b_{1j}|^2 + \dots + |b_{nj}|^2)
+\end{equation*}
+
+\begin{equation*}
+= \sum_{i} (|a_{i1}|^2 + \dots + |a_{in}|^2) \sum_{j} (|b_{1j}|^2 + \dots + |b_{nj}|^2)
+\end{equation*}
+
+\begin{equation*}
+= |A|^2 |B|^2, \quad \text{as required.} \quad \square
+\end{equation*}
+
+It follows from the submultiplicative property that \( |A^m| \leq |A|^m \). Along with the \textit{triangle inequality} \( |A + B| \leq |A| + |B| \), the submultiplicative property enables us to test convergence of matrix infinite series by comparing them with series of real numbers. In particular, we have:
+
+\textbf{Convergence of the exponential series.} \textit{If \( A \) is any \( n \times n \) real matrix, then}
+\begin{equation*}
+1 + \frac{A}{1!} + \frac{A^2}{2!} + \frac{A^3}{3!} + \dots, \quad \text{where } 1 = n \times n \text{ identity matrix,}
+\end{equation*}
+\textit{is convergent in \( \mathbb{R}^{n^2} \).}
+
+\textbf{Proof.} It suffices to prove that this series is absolutely convergent, that is, to prove the convergence of
+
+\begin{equation*}
+|1| + \frac{|A|}{1!} + \frac{|A|^2}{2!} + \frac{|A|^3}{3!} + \dots.
+\end{equation*}
+
+This is a series of positive real numbers, whose terms (except for the first) are less than or equal to the corresponding terms of
+
+\begin{equation*}
+1 + \frac{|A|}{1!} + \frac{|A|^2}{2!} + \frac{|A|^3}{3!} + \dots
+\end{equation*}
+by the submultiplicative property. The latter series is the series for the real exponential function \( e^{|A|} \); hence the original series is convergent.
+\end{proof}
+
 \end{document}
