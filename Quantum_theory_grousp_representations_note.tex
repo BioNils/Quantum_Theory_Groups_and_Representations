@@ -357,4 +357,31 @@ The set of $c_{ijk}$ is the set of structure constants of the algebra, that are 
     \end{equation*}
     where $\epsilon_{ijk}$ is the Levi-Cevita antisymetric tensor.
 \end{remark}
+We will now focus ourself on the groups of linear transformations that preserve an inner product: The unitary and orthogonal groups. These groups are subgroups of respectively $GL(n,\mathbb{C})$ and $GL(n,\mathbb{R})$, consisting of elements $\Omega$ satisfying:
+\begin{equation}
+    \label{eq:unitary}
+    \Omega\Omega^{\dagger,T} = 1
+\end{equation}
+\subsection{Lie Algebra of the Unitary/Orthogonal Group $U(n)$ and $ O(n)$}
+Let $X$ be an element of the Lie algebra $\mathfrak{u}(n)$ such that $\Omega = e^{tX}$ for some $t$.
+The condition \ref{eq:unitary} then becomes:
+\begin{equation*}
+    e^{tX}e^{tX^\dagger} = 1.
+\end{equation*}
+Taking the derivative of the last equation and evaluating it at $t=0$ gives:
+\begin{equation*}
+    X + X^\dagger = 0 \Leftrightarrow X = -X^\dagger.
+\end{equation*}
+\begin{definition}[$\mathfrak{u}(n)$]
+    The lie Algebra $\mathfrak{u}(n)$ is the set of $n\times n$ skew-adjoint complex matrices.
+\end{definition}
+
+\begin{definition}[$\mathfrak{o}(n)$]
+    The Lie Algebra $\mathfrak{o}(n)$ is the setis the set of  anti-symmetric $n\times n$ real matrices $X = - X^T \quad \forall X \in \mathfrak{o}(n)$.
+\end{definition}
+Regarding the special orthogonal/unitary group, we can use the following identity:
+\begin{equation*}
+    \det e^{X} = e^{\text{Tr}(X)}.
+\end{equation*}
+Since the determinant of the matrices of $SU(n)\supset SO(n)$ is $1$, it add the conditions of tracelessness for the lie Algebra  $\mathfrak{su}(n) \supset \mathfrak{so}(n)$.
 \end{document}
