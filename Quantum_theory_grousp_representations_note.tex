@@ -112,10 +112,12 @@
   \endgroup
 }
 \makeatother
-\title{Quantum Theory, Groups and Representations}
+\title{Quantum Theory, Groups, and Representations}
 \begin{document}
 \maketitle
+\tableofcontents
 \section{Representation theory}
+\subsection{Definitions}
 \begin{definition}
     A representation $\left(\pi,V\right)$ of a group $G$ over a vector space $V$ is an application $\pi:G\rightarrow GL(V)$ such that $\forall g_1,g_2 \in G, \ \pi\left(g_1\cdot g_2\right) = \pi\left(g_1\right) \pi(g_2)$.
     \begin{itemize}
@@ -140,8 +142,9 @@
         \end{pmatrix}.
     \end{equation*}
 \end{definition}
+\subsection{Theorems}
 \begin{theorem}
-    A unitary transformation $\pi$ over a finite dimensionnal vector space $V$ can be written as $\oplus \pi_i $, where $\left\{\pi_i\right\}$ is a set of irreducible representations.
+    A unitary transformation $\pi$ over a finite dimensional vector space $V$ can be written as $\oplus \pi_i $, where $\left\{\pi_i\right\}$ is a set of irreducible representations.
 \end{theorem}
 \begin{proof}
     If $(\pi,V)$ is irreducible, then it's obvious.\\
@@ -383,14 +386,15 @@ Regarding the special orthogonal/unitary group, we can use the following identit
 \begin{equation*}
     \det e^{X} = e^{\text{Tr}(X)}.
 \end{equation*}
-Since the determinant of the matrices of $SU(n)$ is $1$, it add the conditions of tracelessness for the lie Algebra  $\mathfrak{su}(n)$. It is slightly different for $\mathfrak{so}(n)$ since matrices $X$ of $\mathfrak{o}(n)$ are already traceless because of $X^T = -X$ implying that the diagonal coefficients are zero.
+Since the determinant of the matrices of $SU(n)$ is $1$, it adds the conditions of tracelessness for the lie Algebra  $\mathfrak{su}(n)$. It is slightly different for $\mathfrak{so}(n)$ since matrices $X$ of $\mathfrak{o}(n)$ are already traceless because of $X^T = -X$ implying that the diagonal coefficients are zero.
 \subsection{To remember}
 \begin{itemize}
     \item The group of linear application $GL(n,\mathbb{K})$ admit $\mathfrak{gl}(n, \mathbb{K}) = M_{n\times n}(\mathbb{K})$ the space of n by n $\mathbb{K}$ matrices as its Lie Algebra.
-    \item The Lie algebra $\mathfrak{sl}(n,\mathbb{K})$ of $SL(n,\mathbb{K})$ the group of inversibe  $\mathbb{K}$-matrices of determinant $1$ is the set of traceless $\mathbb{K}$-matrices.
+    \item The Lie algebra $\mathfrak{sl}(n,\mathbb{K})$ of $SL(n,\mathbb{K})$ the group of invertible  $\mathbb{K}$-matrices of determinant $1$ is the set of traceless $\mathbb{K}$-matrices.
     \item The orthogonal group $O(n) \subset  GL(n, \mathbb{R})$ is the group of $n \times n$ real matrices $\Omega$ satisfying $\Omega^T = \Omega^{-1}$. Its Lie algebra $\mathfrak{o}(n)$ is the Lie algebra of $n \times n$ real matrices $X$ such as $X^T = -X$.
     \item The special orthogonal group $SO(n) \subset SL(n,\mathbb{R})$ is the subgroup of $O(n)$ with determinant $1$. It has the same Lie algebra as $O(n)$: $\mathfrak{so}(n) = \mathfrak{o}(n)$.
     \item The unitary group  $U(n)\subset GL(n,\mathbb{C})$ is the group of $n \times n$ complex matrices $\Omega$ such that $\Omega^\dagger = \Omega^{-1}$. Its Lie algebra $\mathfrak{su}(n)$ is the Lie algebra of $n \times n$ complex anti-Hermitian \footnote{skew = anti} matrices $X$, those satisfying $X^\dagger = -X$.
     \item The special unitary group $SU(n)\subset SL(n,\mathbb{C})$ is the subgroup of $U(n)$ matrices with determinant 1. Its Lie algebra $\mathfrak{su}(n)$ is the Lie algebra of $n \times n$ anti-Hermitian  traceless matrices $X$.
 \end{itemize}
+\section{Dynkin Theory}
 \end{document}
